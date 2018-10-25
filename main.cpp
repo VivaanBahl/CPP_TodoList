@@ -28,6 +28,8 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    // read in the todos from the todo file
+
     std::string command = argv[1];
     auto cmd_loc = std::find(commands.begin(), commands.end(), command);
     if (cmd_loc == std::end(commands))
