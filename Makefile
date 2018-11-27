@@ -1,6 +1,6 @@
 COMPILER=g++
 COMPILER_OPTIONS = -std=c++11 -Wall -Wextra
-SOURCE_FILES = todo_server.cpp add_todo.cpp main.cpp
+SOURCE_FILES = todo_server.cpp todo_object.cpp add_parser.cpp main.cpp
 OUTPUT_FILE = todo_local
 
 all:

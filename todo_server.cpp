@@ -57,7 +57,18 @@ TodoServer::TodoServer()
             token_loc++;
         }
 
+        string title = tokens[0];
+        string description = tokens[1];
+
         bool completed;
         istringstream(tokens[2]) >> completed;
+
+        TodoObject todo = TodoObject(title, description, completed);
+
     }
+}
+
+void TodoServer::add_todo_item(TodoObject todo)
+{
+    std::cout << "not implemented yet" << std::endl;
 }
