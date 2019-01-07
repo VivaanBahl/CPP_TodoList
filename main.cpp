@@ -9,6 +9,8 @@
 
 #include "add_parser.h"
 #include "todo_server.h"
+#include "list_todos.h"
+#include "debug_utils.h"
 
 // Arguments:
 // todo <command> [args]
@@ -55,6 +57,7 @@ int main(int argc, char **argv)
 
     if (command == "add")
     {
+        debug_print("Add command");
         if (argc != num_args_add)
         {
             std::cout << CLIStrings::add_string << std::endl;
@@ -105,11 +108,14 @@ int main(int argc, char **argv)
     }
     else if (command == "list")
     {
+        debug_print("List command");
         if (argc != num_args_list)
         {
             std::cout << CLIStrings::list_string << std::endl;
             return 1;
         }
+
+        TodoLister::print_all_todos(server);
     }
     else {
         std::cout << "Command " << command << " not yet implemented!" << std::endl;

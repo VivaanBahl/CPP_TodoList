@@ -45,10 +45,14 @@ public:
 
 TodoServer::TodoServer()
 {
-    TodoDiskReader reader("~/.todo/todo_list.txt");
+    debug_print("Initializing Server...");
+    std::string homedir = getenv("HOME");
+    TodoDiskReader reader(homedir + "/.todo/todo_list.txt");
     string line;
-    while (getline(stringstream(reader.read()), line))
+    stringstream myfile = stringstream(reader.read());
+    while (getline(myfile, line))
     {
+        debug_print("Read line " + line + " from file");
         string tokens[3];
         istringstream ss(line);
         int token_loc = 0;
@@ -65,6 +69,8 @@ TodoServer::TodoServer()
 
         TodoObject *todo = new TodoObject(title, description, completed);
 
+        debug_print("Found todo item " + title);
+
         // add it to the list of todos
         add_todo_item(todo);
     }
@@ -77,8 +83,13 @@ void TodoServer::add_todo_item(TodoObject *todo)
 
 void TodoServer::save_todo_list()
 {
-    for (TodoObject todo : todos)
+    for (TodoObject *todo : todos)
     {
         delete todo;
     }
+}
+
+const std::vector<TodoObject *>& TodoServer::get_todo_list()
+{
+    return todos;
 }
