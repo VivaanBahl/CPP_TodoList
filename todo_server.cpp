@@ -63,12 +63,22 @@ TodoServer::TodoServer()
         bool completed;
         istringstream(tokens[2]) >> completed;
 
-        TodoObject todo = TodoObject(title, description, completed);
+        TodoObject *todo = new TodoObject(title, description, completed);
 
+        // add it to the list of todos
+        add_todo_item(todo);
     }
 }
 
-void TodoServer::add_todo_item(TodoObject todo)
+void TodoServer::add_todo_item(TodoObject *todo)
 {
-    std::cout << "not implemented yet" << std::endl;
+    todos.push_back(todo);
+}
+
+void TodoServer::save_todo_list()
+{
+    for (TodoObject todo : todos)
+    {
+        delete todo;
+    }
 }

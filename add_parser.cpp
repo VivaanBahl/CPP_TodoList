@@ -2,11 +2,11 @@
 
 namespace AddParser
 {
-    TodoObject parse_command_args(char **full_argv)
+    TodoObject* parse_command_args(char **add_args)
     {
-        std::string title = full_argv[2];
-        std::string description = full_argv[3];
+        std::string title = add_args[0];
+        std::string description = add_args[1];
 
-        return TodoObject(title, description, false);
+        return new TodoObject(title, description, false);
     }
 }

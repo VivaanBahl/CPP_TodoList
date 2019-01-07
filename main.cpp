@@ -47,6 +47,12 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    char **command_args = (char **) malloc(sizeof(char*) * (argc - 2));
+    for (int i = 2; i < argc; i++)
+    {
+        command_args[i-2] = argv[i];
+    }
+
     if (command == "add")
     {
         if (argc != num_args_add)
@@ -54,7 +60,7 @@ int main(int argc, char **argv)
             std::cout << CLIStrings::add_string << std::endl;
             return 1;
         }
-        TodoObject to_add = AddParser::parse_command_args(argv);
+        TodoObject *to_add = AddParser::parse_command_args(command_args);
         server.add_todo_item(to_add);
     }
     else if (command == "view")
