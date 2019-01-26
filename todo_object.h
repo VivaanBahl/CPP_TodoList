@@ -13,10 +13,12 @@ public:
     std::string get_description();
     bool get_completed();
 
+    std::string serialize();
+
     void set_title(std::string new_title);
     void set_description(std::string new_description);
     void set_completed(bool new_completed);
 
-    TodoObject(std::string title, std::string description, bool completed);
+    TodoObject(std::string title, std::string description, bool completed = false);
 };
 #endif

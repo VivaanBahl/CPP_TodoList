@@ -5,16 +5,17 @@ using namespace std;
 class TodoDiskReader {
 private:
     string filename;
+    ofstream file_output;
 public:
-    TodoDiskReader(string filename)
+    TodoDiskReader()
     {
-        this->filename = filename;
+        std::string homedir = getenv("HOME");
+        this->filename = homedir + "/.todo/todo_list.txt";
         ifstream todofile(filename.c_str());
         if (!todofile.good())
         {
-            // create the file
-            ofstream todocreate(filename.c_str());
-            todocreate << "";
+            cout << "Error opening file!" << endl;
+            exit(1);
         }
     }
     string read()
@@ -30,6 +31,10 @@ public:
         result << todo_file.rdbuf();
         return result.str();
     }
+    void start_save()
+    {
+        file_output = ofstream(this->filename.c_str());
+    }
     void write(string s)
     {
         if (this->filename.size() == 0) 
@@ -38,16 +43,18 @@ public:
         }
 
         // write data back to ~/.todo/todos.txt
-        ofstream todo_file(this->filename.c_str());
-        todo_file << s;
+        this->file_output << s;
+    }
+    void finish()
+    {
+        file_output.close();
     }
 };
 
 TodoServer::TodoServer()
 {
     debug_print("Initializing Server...");
-    std::string homedir = getenv("HOME");
-    TodoDiskReader reader(homedir + "/.todo/todo_list.txt");
+    TodoDiskReader reader;
     string line;
     stringstream myfile = stringstream(reader.read());
     while (getline(myfile, line))
@@ -78,15 +85,22 @@ TodoServer::TodoServer()
 
 void TodoServer::add_todo_item(TodoObject *todo)
 {
+    debug_print("Adding todo item " + todo->get_title());
     todos.push_back(todo);
 }
 
 void TodoServer::save_todo_list()
 {
+    TodoDiskReader reader;
+    reader.start_save();
     for (TodoObject *todo : todos)
     {
+        std::string todo_string = todo->serialize();
+        reader.write(todo_string);
+        debug_print("wrote " + todo_string);
         delete todo;
     }
+    reader.finish();
 }
 
 const std::vector<TodoObject *>& TodoServer::get_todo_list()

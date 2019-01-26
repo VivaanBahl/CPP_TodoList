@@ -30,6 +30,11 @@ void TodoObject::set_completed(bool new_completed)
     this->completed = new_completed;
 }
 
+std::string TodoObject::serialize()
+{
+    return this->title + "|" + this->description + "|" + (this->completed ? "1" : "0") + "\n";
+}
+
 TodoObject::TodoObject(std::string title, std::string description, bool completed)
 {
     this->title = title;

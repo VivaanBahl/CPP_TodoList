@@ -7,6 +7,6 @@ namespace AddParser
         std::string title = add_args[0];
         std::string description = add_args[1];
 
-        return new TodoObject(title, description, false);
+        return new TodoObject(title, description);
     }
 }

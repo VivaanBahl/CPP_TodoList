@@ -32,6 +32,11 @@ static const int num_args_list = 2;
 
 int main(int argc, char **argv) 
 {
+
+    debug_print("");
+    debug_print("");
+    debug_print("Starting Todo List");
+
     if (argc < 2)
     {
         std::cout << CLIStrings::usage_string << std::endl;
@@ -121,5 +126,11 @@ int main(int argc, char **argv)
         std::cout << "Command " << command << " not yet implemented!" << std::endl;
     }
 
+    debug_print("Saving Todo List");
+    server.save_todo_list();
+
+    
+    debug_print("Exiting todo list");
+    debug_print("");
     return 0;
 }
