@@ -95,9 +95,10 @@ void TodoServer::save_todo_list()
     reader.start_save();
     for (TodoObject *todo : todos)
     {
-        std::string todo_string = todo->serialize();
-        reader.write(todo_string);
-        debug_print("wrote " + todo_string);
+        std::stringstream stream;
+        stream << todo;
+        reader.write(stream.str());
+        debug_print("wrote " + stream.str());
         delete todo;
     }
     reader.finish();

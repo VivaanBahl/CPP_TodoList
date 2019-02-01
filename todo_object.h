@@ -15,7 +15,8 @@ public:
     std::string get_description();
     bool get_completed();
 
-    std::string serialize();
+    friend std::ostream& operator<< (std::ostream &out, const TodoObject &todo);
+    friend std::ostream& operator<< (std::ostream &out, const TodoObject *todo);
     std::string get_pretty_print_string();
 
     void set_title(std::string new_title);

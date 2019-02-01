@@ -30,9 +30,19 @@ void TodoObject::set_completed(bool new_completed)
     this->completed = new_completed;
 }
 
-std::string TodoObject::serialize()
+// This one is a prettier print
+std::ostream& operator<< (std::ostream &out, const TodoObject &todo)
 {
-    return this->title + "|" + this->description + "|" + (this->completed ? "1" : "0") + "\n";
+    out << (todo.completed ? "X" : "0") << " | " << todo.title << " : " << todo.description;
+    return out;
+
+}
+
+// this one is more for serialization
+std::ostream& operator<< (std::ostream &out, const TodoObject *todo)
+{
+    out << todo->title << "|" << todo->description << "|" << (todo->completed ? "1" : "0");
+    return out;
 }
 
 std::string TodoObject::get_pretty_print_string()
