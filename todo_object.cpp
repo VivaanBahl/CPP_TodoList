@@ -41,7 +41,7 @@ std::ostream& operator<< (std::ostream &out, const TodoObject &todo)
 // this one is more for serialization
 std::ostream& operator<< (std::ostream &out, const TodoObject *todo)
 {
-    out << todo->title << "|" << todo->description << "|" << (todo->completed ? "1" : "0");
+    out << todo->title << "|" << todo->description << "|" << (todo->completed ? "1" : "0") << std::endl;
     return out;
 }
 

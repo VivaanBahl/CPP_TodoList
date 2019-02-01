@@ -4,8 +4,6 @@
 #include <chrono>
 #include <ctime>
 
-// #define DEBUG_MODE 1
-
 #ifndef DEBUG_UTILS
 #define DEBUG_UTILS
 

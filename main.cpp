@@ -12,6 +12,7 @@
 #include "list_todos.h"
 #include "debug_utils.h"
 #include "view_command.h"
+#include "finish_parser.h"
 
 // Arguments:
 // todo <command> [args]
@@ -97,6 +98,12 @@ int main(int argc, char **argv)
             std::cout << CLIStrings::finish_string << std::endl;
             return 1;
         }
+        FinishUnfinish completer;
+        TodoObject *todo = completer.find_todo(command_args, server);
+        if (todo)
+        {
+            completer.complete(todo);
+        }
     }
     else if (command == "unfinish")
     {
@@ -105,6 +112,13 @@ int main(int argc, char **argv)
             std::cout << CLIStrings::unfinish_string << std::endl;
             return 1;
         }
+        FinishUnfinish uncompleter;
+        TodoObject *todo = uncompleter.find_todo(command_args, server);
+        if (todo)
+        {
+            uncompleter.uncomplete(todo);
+        }
+        
     }
     else if (command == "delete")
     {
