@@ -35,6 +35,24 @@ std::string TodoObject::serialize()
     return this->title + "|" + this->description + "|" + (this->completed ? "1" : "0") + "\n";
 }
 
+std::string TodoObject::get_pretty_print_string()
+{
+    int title_len = this->title.size();
+    std::stringstream separator;
+    std::stringstream padding;
+    int pad_length = 5;
+    for (int i = 0; i < title_len + pad_length; i++)
+    {
+        separator << "-";
+    }
+    for (int i = 0; i < pad_length - 1; i++)
+    {
+        padding << " ";
+    }
+    
+    return "\n" + this->title + padding.str() + (this->completed ? "X" : "O") + "\n" + separator.str() + "\n\n" + this->description + "\n";
+}
+
 TodoObject::TodoObject(std::string title, std::string description, bool completed)
 {
     this->title = title;

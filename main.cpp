@@ -11,6 +11,7 @@
 #include "todo_server.h"
 #include "list_todos.h"
 #include "debug_utils.h"
+#include "view_command.h"
 
 // Arguments:
 // todo <command> [args]
@@ -73,11 +74,13 @@ int main(int argc, char **argv)
     }
     else if (command == "view")
     {
+        debug_print("View Command");
         if (argc != num_args_view)
         {
             std::cout << CLIStrings::view_string << std::endl;
             return 1;
         }
+        ViewCommand::parse_command(command_args, server);
     }
     else if (command == "edit")
     {

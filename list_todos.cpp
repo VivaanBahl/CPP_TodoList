@@ -10,9 +10,8 @@ namespace TodoLister
         {
             std::string completed_str = todo->get_completed() ? "X" : "O";
             std::string title = todo->get_title();
-            std::string description = todo->get_description();
 
-            std::cout << completed_str << " | " << title << " : " << description << std::endl;
+            std::cout << completed_str << " | " << title << std::endl;
         }
     }
 } 

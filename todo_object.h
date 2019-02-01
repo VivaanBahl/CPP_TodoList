@@ -1,4 +1,6 @@
 #include <string>
+#include <sstream>
+#include <iostream>
 
 #ifndef TODO_OBJECT_H
 #define TODO_OBJECT_H
@@ -14,6 +16,7 @@ public:
     bool get_completed();
 
     std::string serialize();
+    std::string get_pretty_print_string();
 
     void set_title(std::string new_title);
     void set_description(std::string new_description);
