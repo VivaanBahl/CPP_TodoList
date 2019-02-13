@@ -127,6 +127,7 @@ int main(int argc, char **argv)
             std::cout << CLIStrings::delete_string << std::endl;
             return 1;
         }
+        server.remove_todo_item(command_args[0]);
     }
     else if (command == "list")
     {

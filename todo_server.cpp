@@ -83,8 +83,26 @@ TodoServer::TodoServer()
     }
 }
 
+void TodoServer::remove_todo_item(std::string title)
+{
+    debug_print("attempting to delete todo " + title);
+    std::vector<TodoObject *>::iterator todo_iterator = todos.begin();
+    for (auto todo : todos)
+    {
+        if (todo->get_title().compare(title) == 0)
+        {
+            debug_print("Found todo " + title);
+            todos.erase(todo_iterator);
+            return;
+        }
+        todo_iterator++;
+    }
+    std::cout << "Couldn't find a todo with the title " << title << std::endl;
+}
+
 void TodoServer::add_todo_item(TodoObject *todo)
 {
+    //todo check dups
     debug_print("Adding todo item " + todo->get_title());
     todos.push_back(todo);
 }
@@ -102,6 +120,19 @@ void TodoServer::save_todo_list()
         delete todo;
     }
     reader.finish();
+}
+
+TodoObject *TodoServer::find_todo(std::string title)
+{
+    for (auto todo : todos)
+    {
+        if (todo->get_title().compare(title) == 0)
+        {
+            return todo;
+        }
+    }
+
+    return nullptr;
 }
 
 const std::vector<TodoObject *>& TodoServer::get_todo_list()

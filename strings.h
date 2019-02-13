@@ -7,13 +7,13 @@ namespace CLIStrings
     static const std::string usage_string = "Usage: todo <command> [command_args]";
     static const std::string commands_string = 
     "Commands:\n \
-    \tadd\tAdd a todo item\n \
-    \tview\tView details about a todo item\n \
-    \tedit\tEdit a todo item\n \
-    \tfinish\tMark a todo item as completed\n \
+    \tadd\t\tAdd a todo item\n \
+    \tview\t\tView details about a todo item\n \
+    \tedit\t\tEdit a todo item\n \
+    \tfinish\t\tMark a todo item as completed\n \
     \tunfinish\tMark a todo item as not completed\n \
-    \tdelete\tDelete a todo item\n \
-    \tlist\tList todo items\n";
+    \tdelete\t\tDelete a todo item\n \
+    \tlist\t\tList todo items\n";
     static const std::string add_string = "Usage: todo add <title> <description>";
     static const std::string view_string = "Usage: todo view <title>";
     static const std::string edit_string = "Usage: todo edit <title> <\"title\"|\"desc\"> <replacement>";
