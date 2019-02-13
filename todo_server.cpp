@@ -93,6 +93,7 @@ void TodoServer::remove_todo_item(std::string title)
         {
             debug_print("Found todo " + title);
             todos.erase(todo_iterator);
+            std::cout << "Removed todo " << title << std::endl;
             return;
         }
         todo_iterator++;
@@ -104,6 +105,7 @@ void TodoServer::add_todo_item(TodoObject *todo)
 {
     //todo check dups
     debug_print("Adding todo item " + todo->get_title());
+    std::cout << "Added todo item " << todo->get_title());
     todos.push_back(todo);
 }
 
