@@ -105,7 +105,6 @@ void TodoServer::add_todo_item(TodoObject *todo)
 {
     //todo check dups
     debug_print("Adding todo item " + todo->get_title());
-    std::cout << "Added todo item " << todo->get_title());
     todos.push_back(todo);
 }
 

@@ -13,6 +13,7 @@
 #include "debug_utils.h"
 #include "view_command.h"
 #include "finish_parser.h"
+#include "edit_command.h"
 
 // Arguments:
 // todo <command> [args]
@@ -72,6 +73,7 @@ int main(int argc, char **argv)
         }
         TodoObject *to_add = AddParser::parse_command_args(command_args);
         server.add_todo_item(to_add);
+        std::cout << "Added todo item " << to_add->get_title() << std::endl;
     }
     else if (command == "view")
     {
@@ -90,6 +92,7 @@ int main(int argc, char **argv)
             std::cout << CLIStrings::edit_string << std::endl;
             return 1;
         }
+        EditorParser::parse_command_args(server, command_args);
     }
     else if (command == "finish")
     {
